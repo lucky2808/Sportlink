@@ -3,154 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    
+    <title>Página Inicial</title>
 </head>
 <body>
-    <header class="cabeça">
-        
-            <a href="./outros/Home.html" id="inicio"><img src="./outros/assets/logo..PNG" height="50px" width="50px">
-            Início </a>
-        </div>
-        <div id="end">
-            <img src="./outros/assets/balls.jpg" height="100px">
-        </div>
-    </header>
-    
-   <div class="dados">
-    <h1>CADASTRE-SE!</h1>
-        <input type="text"id="user" name="user" style="width: fit-content;" placeholder="Nome de usuário" >
-        <input type="email"id="email" name="email" style="width: fit-content;" placeholder="email">
-        <input type="password"id="senha" name="senha" style="width: fit-content;" placeholder="Senha">
-        <input type="submit" id= "ctr" value="Enviar">
- 
-   </div>
-   <footer>© 2025-Todos os Direitos Reservados</footer>
-
-   <script href="./app.js">
-
-        const btn =document.querySelector("#ctr");
-        btn.addEventListener('click',function(e){
-            e.preventDefault();
-            
-            const user = document.querySelector("#user");
-            const valueu = user.value;
-
-            const email = document.querySelector("#email");
-            const value =  email.value;
-
-            const senha = document.querySelector("#senha");
-            const values = senha.value;
-                        
-        }
-        )
-        </script>
-    
-    
-        <style>
-            body{
-            background-size:cover;
-            background-repeat: no-repeat;
-            background-image: url("https://images2.imgbox.com/ed/2e/vBb9UIZI_o.png");
+    <header><img src="./assets/Design sem nome.jpg" width="150px" height="100px" id="sl"></header>
+    <div class="links">
+        <a href="#Criar">Organizar partida</a>
+        <a href="#Buscar">Buscar partida</a>
+        <a href="#Sobre">Sobre Nós</a>
+        <a href="#Fale">Fale conosco!</a>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+        body{
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            min-height: 100vh;
-            width: 100%;
-            margin: 0px;
-            border-radius: 0px;
             flex: 1;
-
-            }
-            @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');    
-            .dados{
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                gap: 20px;
-                font-family: "Chivo Mono", monospace;
-                font-optical-sizing: auto;
-                font-weight: 900;
-                font-style: normal;
-                color:#FEC700;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-                input{
-                    border-radius: 15px;
-                    border: none;
-                    padding: 10px;
-                    opacity: 75%;
-                    outline: none;
-                }
-                input:hover{
-                opacity: 100%;
-                }
-            .cabeça{
-                font-weight: bolder;
-                background-color: #808080ff;
-                font-family: "Fjalla One", sans-serif;
-                font-weight: 400;
-                font-style: normal;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: 100px;
-                border-bottom: 5px solid black;
-                border-radius: 0;
-            
-            
-            }
-                #inicio{
-                    display: flex;
-                    align-items: center;
-                    font-family: "Roboto", sans-serif;
-                    font-optical-sizing: auto;
-                     font-weight: bold;
-                    font-style: normal;
-                    font-size: 30px;
-                    flex-direction: column;
-                    text-decoration: none;
-                    color: aliceblue;
-                }
-                #Sobre{
-                    display: flex;
-                    flex-direction: column;
-                    align-items:flex-end;
-                    font-family: "Chivo Mono", monospace;
-                    font-optical-sizing: auto;
-                    font-weight: 900;
-                    font-style: normal;
-                    font-size: 30px;
-                }
-                #end{
-                    display: flex;
-                    gap: 0px;
-                    align-items: center;
-                    justify-content: end;
-                    right: 0px;
-                }
-                #ctr{
-                    padding: 10px;
-                    font-family: "Chivo Mono",monospace;
-                    font-weight: 400;
-                                   
-                    font-optical-sizing: auto;
-                }
-                footer{
-                position: absolute;
-                bottom: 0px;
-                background-color: #FEC700;
-                height: 20px;
-                width: 100%;
-                font-family: "Open Sans", sans-serif;
-                font-optical-sizing: auto;
-                font-weight: bold;
-
-                }
-        </style>
+            margin: 0;
+            background-color: #02462E;
+        }
+        header{
+            background-color: #FFC000;
+            padding: 12px;
+            font-family: "Fjalla One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-align: center;
+            color: aliceblue;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            flex-direction: column;
+        }
+        .links{
+            background-color: #000000;
+            display: flex;
+            gap: 5px;
+            justify-content: space-between;
+            justify-content: space-around;
+            font-family: "Open Sans", sans-serif;
+        }
+        a{
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        }
+        a:hover{
+        border: solid whitesmoke;
+        }
+        
+    </style>
 </body>
-
 </html>
