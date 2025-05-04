@@ -6,8 +6,14 @@
     <title>Página Inicial</title>
 </head>
 <body>
-    <header><img src="./outros/assets/Design sem nome.jpg" width="150px" height="100px" id="sl"></header>
-    <div class="links">
+    <header>
+    <img src="./outros/assets/Design sem nome.jpg" width="150px" height="100px" id="sl">
+        <div class="logcad">
+            <a id="login">LOGIN</a>
+            <a href="./outros/cadastre-se.html" id="cadastro">CADASTRE-SE</a>
+        </div>
+    </header>
+        <div class="links">
         <a href="#Criar">Organizar partida</a>
         <a href="#Buscar">Buscar partida</a>
         <a href="#Sobre">Sobre Nós</a>
@@ -20,20 +26,27 @@
             flex-direction: column;
             flex: 1;
             margin: 0;
-            background-color: #02462E;
+            background-color: #002245;
         }
         header{
             background-color: #FFC000;
-            padding: 12px;
+            padding: 20px;
             font-family: "Fjalla One", sans-serif;
-            font-weight: 400;
+            font-weight: bolder;
             font-style: normal;
             text-align: center;
             color: aliceblue;
             display: flex;
             align-items: center;
             font-size: 20px;
-            flex-direction: column;
+            justify-content: space-between;
+            border-bottom: solid 6px white;
+        }
+        .logcad{
+            display: flex;
+            width: fit-content;
+            gap:40px;
+            background-color: #02462E;
         }
         .links{
             background-color: #000000;
@@ -42,6 +55,7 @@
             justify-content: space-between;
             justify-content: space-around;
             font-family: "Open Sans", sans-serif;
+            height: 30px;
         }
         a{
         text-decoration: none;
@@ -49,9 +63,21 @@
         font-weight: bold;
         }
         a:hover{
-        border: solid whitesmoke;
+        border: solid #02462E;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px #002245;
         }
-        
+        #login{
+            background-color: #002245;
+            padding: 15px;
+
+        }
+        #cadastro{
+            background-color: #002245;
+            padding-left: 15px;
+            
+        }
+
     </style>
 </body>
 </html>
