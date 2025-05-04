@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    
 </head>
 <body>
     <header class="cabeça">
         
-            <a href="Home.html" id="inicio"><img src="./assets/logo..PNG" height="50px" width="50px">
+            <a href="./outros/Home.html" id="inicio"><img src="./outros/assets/logo..PNG" height="50px" width="50px">
             Início </a>
         </div>
         <div id="end">
-            <img src="./assets/balls.jpg" height="100px">
+            <img src="./outros/assets/balls.jpg" height="100px">
         </div>
     </header>
     
@@ -25,7 +26,25 @@
  
    </div>
    <footer>© 2025-Todos os Direitos Reservados</footer>
-   
+
+   <script href="./app.js">
+
+        const btn =document.querySelector("#ctr");
+        btn.addEventListener('click',function(e){
+            e.preventDefault();
+            
+            const user = document.querySelector("#user");
+            const valueu = user.value;
+
+            const email = document.querySelector("#email");
+            const value =  email.value;
+
+            const senha = document.querySelector("#senha");
+            const values = senha.value;
+                        
+        }
+        )
+        </script>
     
     
         <style>
