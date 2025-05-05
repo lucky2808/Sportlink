@@ -9,4 +9,4 @@ async/*função assíncrona que carrega depois de tudo*/ function criarTabelaUsu
     db.run(`INSERT INTO usuarios (username, email, senha) VALUES (?,?,?)`, [username, email, senha])
 }
 
-criarTabelaUsuarios("Lucas", "lucasgoaba@gmail.com", "livia");
+criarTabelaUsuarios();

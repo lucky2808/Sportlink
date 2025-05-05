@@ -9,40 +9,29 @@
 <body>
     <header class="cabeça">
         
-            <a href="./index.html" id="inicio"><img src="./outros/assets/logo..PNG" height="50px" width="50px">
+            <a href="./index.html" id="inicio"><img src="https://images2.imgbox.com/4f/76/aX3ixmqZ_o.png" height="50px" width="50px">
             Início </a>
         </div>
         <div id="end">
-            <img src="./outros/assets/balls.jpg" height="100px">
+            <img src="https://images2.imgbox.com/06/ea/hUAVHMP6_o.jpg" height="100px">
         </div>
     </header>
     
    <div class="dados">
     <h1>CADASTRE-SE!</h1>
+    <form action="./outros/salvar.php" method="POST">
         <input type="text"id="user" name="user" style="width: fit-content;" placeholder="Nome de usuário" >
         <input type="email"id="email" name="email" style="width: fit-content;" placeholder="email">
         <input type="password"id="senha" name="senha" style="width: fit-content;" placeholder="Senha">
         <input type="submit" id= "ctr" value="Enviar">
+    </form>
  
    </div>
    <footer>© 2025-Todos os Direitos Reservados</footer>
 
-   <script href="./outros/app.js">
-
-        const btn =document.querySelector("#ctr");
-        btn.addEventListener('click',function(e){
-            e.preventDefault();
-            
-            const user = document.querySelector("#user");
-            const valueu = user.value;
-
-            const email = document.querySelector("#email");
-            const value =  email.value;
-
-            const senha = document.querySelector("#senha");
-            const values = senha.value;
-        }
-        )
+   <script>
+</script>
+<div id="resultado"></div>
         </script>
     
     
@@ -50,7 +39,7 @@
             body{
             background-size:cover;
             background-repeat: no-repeat;
-            background-image: url("https://images2.imgbox.com/ed/2e/vBb9UIZI_o.png");
+            background-image: url("https://images2.imgbox.com/ec/67/MXBo8E3D_o.png");
             display: flex;
             flex-direction: column;
             gap: 20px;
