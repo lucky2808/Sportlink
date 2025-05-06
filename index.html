@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-    <img src="https://images2.imgbox.com/e1/5f/jMf8lYud_o.jpg" width="150px" height="100px" id="sl">
+    <img src="./outros/assets/Design sem nome.jpg" width="150px" height="100px" id="sl">
         <div class="logcad">
             <a id="login">LOGIN</a>
             <a href="./cadastre-se.html" id="cadastro">CADASTRE-SE</a>
@@ -19,17 +19,21 @@
         <a href="#Sobre"id="c">Sobre Nós</a>
         <a href="#Fale"id="c">Fale conosco!</a>
     </div>
+    <div class="corpo">
+        <h3 id="Criar">Organizar Partida</h3>
+        <h3 id="Buscar">Buscar Partida</h3>
+        <h3 id="Sobre">Sobre Nós</h3>
+        <h3 id="Fale">Fale conosco</h3>
+    </div>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
         body{
-            display: flex;
-            flex-direction: column;
             flex: 1;
             margin: 0;
             background-color: antiquewhite;
         }
         header{
-            background-color: #FFC000;
+            background-color: #808080ff;
             padding: 20px;
             font-family: "Fjalla One", sans-serif;
             font-weight: bolder;
@@ -49,7 +53,6 @@
 
         }
         #login:hover{
-        border: solid 3px #02462E;
         transform: translateY(-5px);
         }
 
@@ -62,7 +65,6 @@
         }
         #cadastro:hover{
         transform: translateY(-5px);
-        border: solid 5px #02462E;
         }
 
         .links{
@@ -89,6 +91,50 @@
             display: flex;
             width: fit-content;
             gap:40px;
+        }
+        .corpo{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity:75%;
+            background-color: #002245;
+            
+        }        
+        #Criar{
+            display:flex;
+            background-color: #000000;
+            color:aliceblue;
+            width:75%;
+            padding: 100px;
+            opacity: 100%;
+            object-position: 75%;
+            
+
+        }
+        #Buscar{
+            display:flex;
+            background-color: #000000;
+            color:aliceblue;
+            width:75%;
+            padding: 100px;
+            opacity: 100%;            
+
+        }
+        #Sobre{
+            display:flex;
+            background-color: #000000;
+            color:aliceblue;
+            width:75%;
+            padding: 100px;
+            opacity: 100%;            
+
+        }
+        #Fale{
+            display:flex;
+            background-color: #000000;
+            color:aliceblue;
+            width:75%;
+            padding: 100px;
         }
     </style>
 </body>
