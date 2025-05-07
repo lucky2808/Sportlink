@@ -69,9 +69,9 @@
       const senha = document.getElementById('senha').value;
 
       firebase.database().ref('usuarios/').push({
-        user: user,
+        nome: user,
         email: email,
-        senha: senha
+        password: senha
       })
       .then(() => {
         msg.innerText = "Dados enviados com sucesso!";
