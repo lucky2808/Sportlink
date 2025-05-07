@@ -13,23 +13,65 @@
             Início </a>
         </div>
         <div id="end">
-            <img src="https://images2.imgbox.com/06/ea/hUAVHMP6_o.jpg" height="100px">
+            <img src="https://images2.imgbox.com/06/ea/hUAVHMP6_o.jpg" height="90px">
         </div>
     </header>
     
-    <form action="./outros/salvar.php" method="POST">
-        <div class="dados">
+    
+    <div class="dados">
         <h1>CADASTRE-SE!</h1>
-        <input type="text"id="user" name="user" style="width: fit-content;" placeholder="Nome de usuário" >
-        <input type="email"id="email" name="email" style="width: fit-content;" placeholder="email">
-        <input type="password"id="senha" name="senha" style="width: fit-content;" placeholder="Senha">
-        <input type="submit" class="btn btn-primary" id="ctr" value="Enviar">
-        </div>
-    </form>
+        <form id="cadastroForm">
+            <input type="text"id="user" name="user" style="width: fit-content;" placeholder="Nome de usuário" >
+            <input type="email"id="email" name="email" style="width: fit-content;" placeholder="email">
+            <input type="password"id="senha" name="senha" style="width: fit-content;" placeholder="Senha">
+            <input type="submit" class="btn btn-primary" id="ctr" value="Enviar">
+        </form>
+    </div>
+    <p id="AVISO"></p>
+    
  
    <footer>© 2025-Todos os Direitos Reservados</footer>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js"></script>
 
-   <script>
+
+       <script> //configuração do firebase
+    const firebaseConfig = {
+  apiKey: "AIzaSyDo-V4gucmltSbFt3_MXCr4nhCCpb3RdOI",
+  authDomain: "esportelink-1637c.firebaseapp.com",
+  databaseURL: "https://esportelink-1637c-default-rtdb.firebaseio.com",
+  projectId: "esportelink-1637c",
+  storageBucket: "esportelink-1637c.appspot.com",
+  messagingSenderId: "110017754898",
+  appId: "1:110017754898:web:272fe4d0b957c4fb6665cb"};
+
+  //ligando o firebase
+  firebase.initializeApp('firebaseConfig');
+  const database =firebase.database();
+
+   // Enviar dados
+   const form = document.getElementById('cadastroForm');
+    const msg = document.getElementById('mensagem');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('user').value;
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      firebase.database().ref('usuarios/').push({
+        user: user,
+        email: email,
+        senha: senha
+      })
+      .then(() => {
+        msg.innerText = "Dados enviados com sucesso!";
+        form.reset();
+      })
+      .catch((error) => {
+        msg.innerText = "Erro ao enviar: " + error.message;
+      });
+    });
 </script>
 <div id="resultado"></div>
         </script>
@@ -61,11 +103,21 @@
                 font-weight: 900;
                 font-style: normal;
                 color:#FEC700;
+                
+            }
+            #cadastroForm{display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 20px;
+                font-family: "Chivo Mono", monospace;
+                font-optical-sizing: auto;
+                font-weight: 900;
+                font-style: normal;
+                color:#FEC700;
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%);
-            }
+                transform: translate(-50%, -50%);}
                 input{
                     border-radius: 15px;
                     border: none;
