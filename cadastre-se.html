@@ -29,15 +29,12 @@
     <h1 id="mensagem" style="text-align: center;" >Aviso</h1>
    <footer>© 2025-Todos os Direitos Reservados</footer>
 
-   <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-
-  <script type="module">
+   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getDatabase, ref, push, orderByChild, equalTo, query, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
   
-    // Configuração do Firebase
+    // Configuração Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyCkG8z3QucWtyiFZCwSQJ2mUNYhtWm95Tw",
       authDomain: "sportlink-3be1b.firebaseapp.com",
@@ -47,14 +44,14 @@
       appId: "1:678068019562:web:866dcd32fee6912cdf4513"
     };
   
-    // Inicializar Firebase
     const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
     const database = getDatabase(app);
   
     const form = document.getElementById('cadastroForm');
     const msg = document.getElementById('mensagem');
   
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
   
       const usuario = document.getElementById('user').value.trim();
@@ -62,36 +59,35 @@
       const senha = document.getElementById('senha').value.trim();
   
       if (!usuario || !email || !senha) {
-        msg.textContent = "Preencha todos os campos";
+        msg.textContent = "Preencha todos os campos.";
         msg.style.color = "red";
         return;
       }
   
       try {
-        const usuariosRef = ref(database, 'usuarios');
-        const consulta = query(usuariosRef, orderByChild('email'), equalTo(email));
-        const snapshot = await get(consulta);
+        // Cria o usuário no Firebase Authentication
+        const credenciais = await createUserWithEmailAndPassword(auth, email, senha);
   
-        let jaExiste = false;
-        snapshot.forEach(child => {
-          if (child.val().usuario.toLowerCase() === usuario.toLowerCase()) {
-            jaExiste = true;
-          }
+        // Após cadastro, salva o nome de usuário no Realtime Database
+        await set(ref(database, 'usuarios/' + credenciais.user.uid), {
+          usuario: usuario,
+          email: email
         });
   
-        if (jaExiste) {
-          msg.textContent = "Esses dados já estão cadastrados.";
-          msg.style.color = "orange";
-          return;
-        }
-  
-        await push(usuariosRef, { usuario, email, senha });
-        msg.innerText = "Dados enviados com sucesso!";
+        msg.textContent = "Cadastro realizado com sucesso!";
         msg.style.color = "green";
         form.reset();
   
       } catch (error) {
-        msg.innerText = "Erro ao enviar: " + error.message;
+        if (error.code === 'auth/email-already-in-use') {
+          msg.textContent = "Email já está em uso.";
+        } else if (error.code === 'auth/invalid-email') {
+          msg.textContent = "Email inválido.";
+        } else if (error.code === 'auth/weak-password') {
+          msg.textContent = "Senha fraca (mínimo 6 caracteres).";
+        } else {
+          msg.textContent = "Erro: " + error.message;
+        }
         msg.style.color = "red";
       }
     });
