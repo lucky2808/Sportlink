@@ -27,55 +27,73 @@
         <h1>CADASTRE-SE!</h1>
     </div>
     <h1 id="mensagem" style="text-align: center;" >Aviso</h1>
-
    <footer>© 2025-Todos os Direitos Reservados</footer>
 
    <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
-   <script type="module">
-    
-    // Import the functions you need from the SDKs you need
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+    import { getDatabase, ref, push, orderByChild, equalTo, query, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
   
-    // Your web app's Firebase configuration
+    // Configuração do Firebase
     const firebaseConfig = {
-  apiKey: "AIzaSyCkG8z3QucWtyiFZCwSQJ2mUNYhtWm95Tw",
-  authDomain: "sportlink-3be1b.firebaseapp.com",
-  projectId: "sportlink-3be1b",
-  storageBucket: "sportlink-3be1b.firebasestorage.app",
-  messagingSenderId: "678068019562",
-  appId: "1:678068019562:web:866dcd32fee6912cdf4513"
-};
+      apiKey: "AIzaSyCkG8z3QucWtyiFZCwSQJ2mUNYhtWm95Tw",
+      authDomain: "sportlink-3be1b.firebaseapp.com",
+      projectId: "sportlink-3be1b",
+      storageBucket: "sportlink-3be1b.appspot.com",
+      messagingSenderId: "678068019562",
+      appId: "1:678068019562:web:866dcd32fee6912cdf4513"
+    };
+  
     // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-
-    // Enviar dados
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+  
     const form = document.getElementById('cadastroForm');
     const msg = document.getElementById('mensagem');
-
-    form.addEventListener('submit', function(e) {
+  
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      const usuario = document.getElementById('user').value;
-      const email = document.getElementById('email').value;
-      const senha = document.getElementById('senha').value;
-
-      firebase.database().ref('usuarios/').push({
-        usuario: usuario,
-        email: email,
-        senha: senha
-      })
-      .then(() => {
+  
+      const usuario = document.getElementById('user').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value.trim();
+  
+      if (!usuario || !email || !senha) {
+        msg.textContent = "Preencha todos os campos";
+        msg.style.color = "red";
+        return;
+      }
+  
+      try {
+        const usuariosRef = ref(database, 'usuarios');
+        const consulta = query(usuariosRef, orderByChild('email'), equalTo(email));
+        const snapshot = await get(consulta);
+  
+        let jaExiste = false;
+        snapshot.forEach(child => {
+          if (child.val().usuario.toLowerCase() === usuario.toLowerCase()) {
+            jaExiste = true;
+          }
+        });
+  
+        if (jaExiste) {
+          msg.textContent = "Esses dados já estão cadastrados.";
+          msg.style.color = "orange";
+          return;
+        }
+  
+        await push(usuariosRef, { usuario, email, senha });
         msg.innerText = "Dados enviados com sucesso!";
+        msg.style.color = "green";
         form.reset();
-      })
-      .catch((error) => {
+  
+      } catch (error) {
         msg.innerText = "Erro ao enviar: " + error.message;
-      });
+        msg.style.color = "red";
+      }
     });
   </script>
     
