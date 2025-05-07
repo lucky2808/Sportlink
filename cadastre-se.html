@@ -30,7 +30,12 @@
 
    <footer>© 2025-Todos os Direitos Reservados</footer>
 
+   <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
    <script type="module">
+    
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     // TODO: Add SDKs for Firebase products that you want to use
@@ -45,8 +50,10 @@
   messagingSenderId: "678068019562",
   appId: "1:678068019562:web:866dcd32fee6912cdf4513"
 };
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
     // Enviar dados
     const form = document.getElementById('cadastroForm');
     const msg = document.getElementById('mensagem');
