@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olá!</title>
+</head>
+<body>
+    <header onload="pegarnome()">
+    <img src="https://images2.imgbox.com/1b/ce/vTYmPg14_o.jpg" width="150px" height="100px" id="sl">
+        <div class="logcad">
+            <h2 id="usuarioEmail"></h2>
+            <a href="./index.html" id="sair">SAIR</a>
+        </div>
+    </header>
+        <div class="links">
+        <a href="#Criar" id="c">Organizar partida</a>
+        <a href="#Buscar"id="c">Buscar partida</a>
+        <a href="#Sobre"id="c">Dúvidas</a>
+        <a href="#Fale"id="c">Fale conosco!</a>
+    </div>
+    <div class="corpo">
+        <h3 id="Criar">Organizar Partida</h3>
+        <h3 id="Buscar">Buscar Partida</h3>
+        <h3 id="Sobre">Dúvidas</h3>
+        <h3 id="Fale">Fale conosco</h3>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    
+        const firebaseConfig = {
+        apiKey: "AIzaSyCkG8z3QucWtyiFZCwSQJ2mUNYhtWm95Tw",
+        authDomain: "sportlink-3be1b.firebaseapp.com",
+        databaseURL: "https://sportlink-3be1b-default-rtdb.firebaseio.com",
+        projectId: "sportlink-3be1b",
+        storageBucket: "sportlink-3be1b.firebasestorage.app",
+        messagingSenderId: "678068019562",
+        appId: "1:678068019562:web:866dcd32fee6912cdf4513"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+    
+        const usuarioEmail = document.getElementById("usuarioEmail");
+        const logoutBtn = document.getElementById("sair");
+    
+        // Verifica se o usuário está autenticado
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            usuarioEmail.textContent = "Olá " + user.value;
+          } else {
+            // Redireciona se não estiver logado
+            window.location.href = "login.html";
+          }
+        });
+    
+        logoutBtn.addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+      
+        </script>
+
+    </body>
+
+</html>
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+        body{
+            flex: 1;
+            margin: 0;
+            background-color: antiquewhite;
+        }
+        header{
+            background-color: #808080ff;
+            padding: 20px;
+            font-family: "Fjalla One", sans-serif;
+            font-weight: bolder;
+            font-style: normal;
+            text-align: center;
+            color: aliceblue;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            justify-content: space-between;
+        }
+
+        #login{
+            background-color: #002245;
+            padding: 15px;
+            border-radius: 5px;
+
+        }
+        #login:hover{
+        transform: translateY(-5px);
+        }
+
+        #sair{
+            background-color: #002245;
+            padding: 15px;
+            display:flex;
+            border-radius: 5px;
+            align-items: center;
+        }
+        #sair:hover{
+        transform: translateY(-5px);
+        }
+
+        .links{
+            background-color: #000000;
+            display: flex;
+            gap: 5px;
+            justify-content: space-between;
+            justify-content: space-around;
+            font-family: "Open Sans", sans-serif;
+            height: 30px;
+            border-top: solid 5px white;
+            padding-top: 4px;
+        }
+        #c:hover{
+        border: solid 5px #02462E
+        }
+        a{
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        }
+    
+        .logcad{
+            display: flex;
+            width: fit-content;
+            gap:40px;
+        }
+        .corpo{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity:75%;
+            background-color: #002245;
+            
+        }        
+        #Criar{
+            display:flex;
+            background-color: #000000;
+            color:aliceblue;
+            width:75%;
+            padding: 100px;
+            opacity: 100%;
+            object-position: 75%;
+            
+
+        }
+        #Buscar{
+            display:flex;
+            background-color: #000000;
+            color:aliceblue;
+            width:75%;
+            padding: 100px;
+            opacity: 100%;            
+
+        }
+        #Sobre{
+            display:flex;
+            background-color: #000000;
+            color:aliceblue;
+            width:75%;
+            padding: 100px;
+            opacity: 100%;            
+
+        }
+        #Fale{
+            display:flex;
+            background-color: #000000;
+            color:aliceblue;
+            width:75%;
+            padding: 100px;
+        }
+    </style>
+</body>
+</html>

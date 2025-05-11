@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportlink - login</title>
+</head>
+<body>
+    <header class="cabeça">
+        
+            <a href="./index.html" id="inicio"><img src="https://images2.imgbox.com/4f/76/aX3ixmqZ_o.png" height="50px" width="50px">
+            Início </a>
+        </div>
+        <div id="end">
+            <img src="https://images2.imgbox.com/06/ea/hUAVHMP6_o.jpg" height="90px">
+        </div>
+    </header>
+    
+    <form id="loginForm">
+  <input type="email" id="loginEmail" placeholder="Email" required>
+  <input type="password" id="loginSenha" placeholder="Senha" required>
+  <button type="submit" id="ctr" >Entrar</button>
+</form>
+<p id="loginMensagem"></p>
+
+    <div class="dados">
+        <h1>LOGIN</h1>
+    </div>
+   <footer>© 2025-Todos os Direitos Reservados</footer>
+
+   <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+  
+    // Configuração Firebase
+    const firebaseConfig = {
+  apiKey: "AIzaSyCkG8z3QucWtyiFZCwSQJ2mUNYhtWm95Tw",
+  authDomain: "sportlink-3be1b.firebaseapp.com",
+  databaseURL: "https://sportlink-3be1b-default-rtdb.firebaseio.com",
+  projectId: "sportlink-3be1b",
+  storageBucket: "sportlink-3be1b.firebasestorage.app",
+  messagingSenderId: "678068019562",
+  appId: "1:678068019562:web:866dcd32fee6912cdf4513"
+};
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+  
+    const loginForm = document.getElementById('loginForm');
+    const loginMensagem = document.getElementById('loginMensagem');
+  
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+  
+      const email = document.getElementById('loginEmail').value.trim();
+      const senha = document.getElementById('loginSenha').value.trim();
+  
+      if (!email || !senha) {
+        loginMensagem.textContent = "Preencha todos os campos.";
+        loginMensagem.style.color = "red";
+        return;
+      }
+  
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, senha);
+        loginMensagem.textContent = "Login realizado com sucesso!";
+        loginMensagem.style.color = "green";
+        window.location.href = "logado.html"
+        // Redirecionar, por exemplo:
+        // window.location.href = "dashboard.html";
+ 
+      } catch (error) {
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+          loginMensagem.textContent = "Email ou senha incorretos.";
+        } else {
+          loginMensagem.textContent = "Erro: " + error.message;
+        }
+        loginMensagem.style.color = "red";
+      }
+    });
+  </script>
+    
+        <style>
+            body{
+            background-size:cover;
+            background-repeat: no-repeat;
+            background-image: url("https://images2.imgbox.com/ec/67/MXBo8E3D_o.png");
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: 100vh;
+            width: 100%;
+            margin: 0px;
+            border-radius: 0px;
+            flex: 1;
+
+            }
+            @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');    
+            .dados{
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 20px;
+                font-family: "Chivo Mono", monospace;
+                font-optical-sizing: auto;
+                font-weight: 900;
+                font-style: normal;
+                color:#FEC700;
+                
+            }
+            #loginForm{display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 20px;
+                font-family: "Chivo Mono", monospace;
+                font-optical-sizing: auto;
+                font-weight: 900;
+                font-style: normal;
+                color:#FEC700;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);}
+                input{
+                    border-radius: 15px;
+                    border: none;
+                    padding: 10px;
+                    opacity: 75%;
+                    outline: none;
+                }
+                input:hover{
+                opacity: 100%;
+                }
+            .cabeça{
+                font-weight: bolder;
+                background-color: #808080ff;
+                font-family: "Fjalla One", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 100px;
+                border-bottom: 5px solid black;
+                border-radius: 0;
+            
+            
+            }
+                #inicio{
+                    display: flex;
+                    align-items: center;
+                    font-family: "Roboto", sans-serif;
+                    font-optical-sizing: auto;
+                     font-weight: bold;
+                    font-style: normal;
+                    font-size: 30px;
+                    flex-direction: column;
+                    text-decoration: none;
+                    color: aliceblue;
+                }
+                #Sobre{
+                    display: flex;
+                    flex-direction: column;
+                    align-items:flex-end;
+                    font-family: "Chivo Mono", monospace;
+                    font-optical-sizing: auto;
+                    font-weight: 900;
+                    font-style: normal;
+                    font-size: 30px;
+                }
+                #end{
+                    display: flex;
+                    gap: 0px;
+                    align-items: center;
+                    justify-content: end;
+                    right: 0px;
+                }
+                #ctr{
+                    padding: 10px;
+                    font-family: "Open Sans", sans-serif;
+                    font-weight: bold;
+                    font-optical-sizing: auto;
+                    border-radius: 100px;
+                }
+                footer{
+                position: absolute;
+                bottom: 0px;
+                background-color: #FEC700;
+                height: 20px;
+                width: 100%;
+                font-family: "Open Sans", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: bold;
+
+                }
+        </style>
+</body>
+
+</html>
