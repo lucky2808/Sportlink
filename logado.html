@@ -3,55 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Olá!</title>
 </head>
 <body>
-    <header>
+    <header onload="pegarnome()">
     <img src="https://images2.imgbox.com/1b/ce/vTYmPg14_o.jpg" width="150px" height="100px" id="sl">
         <div class="logcad">
-            <a id="login" href="./login.html">LOGIN</a>
-            <a href="./cadastre-se.html" id="cadastro">CADASTRE-SE</a>
+            <h2 id="usuarioEmail"></h2>
+            <a href="./index.html" id="sair">SAIR</a>
         </div>
     </header>
         <div class="links">
-        <a href="#Criar" id="c">Eventos</a>
-        <a href="#Buscar"id="c">Locais próximos</a>
-        <a href="#Sobre"id="c">Sobre Nós</a>
+        <a href="#Criar" id="c">Organizar partida</a>
+        <a href="#Buscar"id="c">Buscar partida</a>
+        <a href="#Sobre"id="c">Dúvidas</a>
         <a href="#Fale"id="c">Fale conosco!</a>
     </div>
     <div class="corpo">
-        <h3 id="Criar">Eventos <br>"Lorem ipsum dolor sit amet,
-             consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut 
-            enim ad minim veniam, quis nostrud exercitation
-            ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla 
-            pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit 
-            anim id est laborum."</h3>
-        <h3 id="Buscar">Estabelecimentos esportivos mais próximos<br>"Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor
-           incididunt ut labore et dolore magna aliqua. Ut 
-           enim ad minim veniam, quis nostrud exercitation
-           ullamco laboris nisi ut aliquip ex ea commodo
-           consequat. Duis aute irure dolor in reprehenderit in
-           voluptate velit esse cillum dolore eu fugiat nulla 
-           pariatur. Excepteur sint occaecat cupidatat non
-           proident, sunt in culpa qui officia deserunt mollit 
-           anim id est laborum."</h3>
-        <h3 id="Sobre">O que é a Sportlink?<br>"Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor
-           incididunt ut labore et dolore magna aliqua. Ut 
-           enim ad minim veniam, quis nostrud exercitation
-           ullamco laboris nisi ut aliquip ex ea commodo
-           consequat. Duis aute irure dolor in reprehenderit in
-           voluptate velit esse cillum dolore eu fugiat nulla 
-           pariatur. Excepteur sint occaecat cupidatat non
-           proident, sunt in culpa qui officia deserunt mollit 
-           anim id est laborum."</h3>
+        <h3 id="Criar">Organizar Partida</h3>
+        <h3 id="Buscar">Buscar Partida</h3>
+        <h3 id="Sobre">Dúvidas</h3>
         <h3 id="Fale">Fale conosco</h3>
     </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    
+        const firebaseConfig = {
+        apiKey: "AIzaSyCkG8z3QucWtyiFZCwSQJ2mUNYhtWm95Tw",
+        authDomain: "sportlink-3be1b.firebaseapp.com",
+        databaseURL: "https://sportlink-3be1b-default-rtdb.firebaseio.com",
+        projectId: "sportlink-3be1b",
+        storageBucket: "sportlink-3be1b.firebasestorage.app",
+        messagingSenderId: "678068019562",
+        appId: "1:678068019562:web:866dcd32fee6912cdf4513"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+    
+        const usuarioEmail = document.getElementById("usuarioEmail");
+        const logoutBtn = document.getElementById("sair");
+    
+        // Verifica se o usuário está autenticado
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            usuarioEmail.textContent = "Olá " + user.email;
+          } else {
+            // Redireciona se não estiver logado
+            window.location.href = "login.html";
+          }
+        });
+    
+        logoutBtn.addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
+      
+        </script>
+
+    </body>
+
+</html>
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
         body{
@@ -83,14 +97,14 @@
         transform: translateY(-5px);
         }
 
-        #cadastro{
+        #sair{
             background-color: #002245;
             padding: 15px;
             display:flex;
             border-radius: 5px;
             align-items: center;
         }
-        #cadastro:hover{
+        #sair:hover{
         transform: translateY(-5px);
         }
 
